@@ -13,7 +13,13 @@ import {
 
 @autobind
 export default class App extends Component {
-  state = { base16: '', base10: 100, base2: '', hexColor: '#FF9900' };
+  state = {
+    base16: '',
+    base10: 100,
+    base2: '',
+    hexColor: '#FF9900',
+    ipAddress: '192.168.0.1'
+  };
 
   componentWillMount() {
     const { base10 } = this.state;
@@ -45,6 +51,20 @@ export default class App extends Component {
         return base10;
       case 'base16':
         return base16;
+    }
+    return '';
+  }
+
+  getIpAddress(section, base) {
+    const { ipAddress } = this.state;
+    const base10 = Number(ipAddress.split('.')[section]);
+    switch (base) {
+      case 'base2':
+        return base10.toString(2);
+      case 'base10':
+        return base10;
+      case 'base16':
+        return base10.toString(16);
     }
     return '';
   }
@@ -107,6 +127,36 @@ export default class App extends Component {
     );
   }
 
+  renderIpAddressTable() {
+    return (
+      <Table>
+        <TableBody displayRowCheckbox={false}>
+          <TableRow>
+            <TableHeaderColumn>Base 2 (binary)</TableHeaderColumn>
+            <TableRowColumn>{this.getIpAddress(0, 'base2')}</TableRowColumn>
+            <TableRowColumn>{this.getIpAddress(1, 'base2')}</TableRowColumn>
+            <TableRowColumn>{this.getIpAddress(2, 'base2')}</TableRowColumn>
+            <TableRowColumn>{this.getIpAddress(3, 'base2')}</TableRowColumn>
+          </TableRow>
+          <TableRow>
+            <TableHeaderColumn>Base 10</TableHeaderColumn>
+            <TableRowColumn>{this.getIpAddress(0, 'base10')}</TableRowColumn>
+            <TableRowColumn>{this.getIpAddress(1, 'base10')}</TableRowColumn>
+            <TableRowColumn>{this.getIpAddress(2, 'base10')}</TableRowColumn>
+            <TableRowColumn>{this.getIpAddress(3, 'base10')}</TableRowColumn>
+          </TableRow>
+          <TableRow>
+            <TableHeaderColumn>Base 16 (hexadecimal)</TableHeaderColumn>
+            <TableRowColumn>{this.getIpAddress(0, 'base16')}</TableRowColumn>
+            <TableRowColumn>{this.getIpAddress(1, 'base16')}</TableRowColumn>
+            <TableRowColumn>{this.getIpAddress(2, 'base16')}</TableRowColumn>
+            <TableRowColumn>{this.getIpAddress(3, 'base16')}</TableRowColumn>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+  }
+
   render() {
     return (
       <MuiThemeProvider>
@@ -158,6 +208,23 @@ export default class App extends Component {
             />
           </div>
           <div>{this.renderHexColorTable()}</div>
+          <h1>IP Address</h1>
+          <hr />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+              alignItems: 'center'
+            }}
+          >
+            <TextField
+              name="hexColor"
+              floatingLabelText="IP Address"
+              value={this.state.ipAddress}
+              onChange={this.handleIpAddressChange}
+            />
+          </div>
+          <div>{this.renderIpAddressTable()}</div>
         </div>
       </MuiThemeProvider>
     );
