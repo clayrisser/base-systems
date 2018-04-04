@@ -1,0 +1,68 @@
+{
+  "name": "base-systems",
+  "version": "0.0.1",
+  "description": "Demonstration of number base systems",
+  "homepage": "https://github.com/codejamninja/base-systems",
+  "author": {
+    "name": "Jam Risser",
+    "email": "jam@jamrizzi.com",
+    "url": "https://codejamninja.com"
+  },
+  "main": "lib/index.js",
+  "files": ["lib"],
+  "scripts": {
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./",
+    "build": "npm run clean && babel src -d lib",
+    "clean": "rm -rf lib",
+    "prepublish": "npm run build",
+    "start": "npm run lint && parcel -p 8888 src/index.html",
+    "start:wireframe": "npm run lint && parcel -p 8888 src/index.html"
+  },
+  "dependencies": {
+    "autobind-decorator": "^2.1.0",
+    "babel-polyfill": "^6.26.0",
+    "lodash": "^4.17.5",
+    "material-ui": "^0.20.0",
+    "matter-js": "^0.14.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-keydown": "^1.9.7"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "parcel-bundler": "^1.7.0"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/codejamninja/base-systems",
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "browsers": "default"
+        }
+      ],
+      "react",
+      "stage-2"
+    ],
+    "plugins": ["transform-decorators-legacy", "transform-class-properties"]
+  },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "eslintIgnore": ["lib", ".cache", "dist"]
+}
