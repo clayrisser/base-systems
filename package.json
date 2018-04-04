@@ -9,7 +9,9 @@
     "url": "https://codejamninja.com"
   },
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "lint": "eslint ./",
     "lint:fix": "eslint --fix ./",
@@ -44,6 +46,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "node-sass": "^4.8.3",
     "parcel-bundler": "^1.7.0"
   },
   "license": "MIT",
@@ -59,10 +62,17 @@
       "react",
       "stage-2"
     ],
-    "plugins": ["transform-decorators-legacy", "transform-class-properties"]
+    "plugins": [
+      "transform-decorators-legacy",
+      "transform-class-properties"
+    ]
   },
   "engines": {
     "node": ">= 4.0.0"
   },
-  "eslintIgnore": ["lib", ".cache", "dist"]
+  "eslintIgnore": [
+    "lib",
+    ".cache",
+    "dist"
+  ]
 }
