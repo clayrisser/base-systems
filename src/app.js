@@ -88,6 +88,10 @@ export default class App extends Component {
     this.setState({ base16: base10.toString(16), base10, base2 });
   }
 
+  handleIpAddressChange(e, ipAddress) {
+    this.setState({ ipAddress });
+  }
+
   handleHexColorChange(e, hexColor) {
     this.setState({ hexColor: hexColor.toUpperCase() });
   }
